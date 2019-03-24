@@ -1,9 +1,8 @@
 import * as api from "./api";
-import { Server } from "tls";
 
 const conf: api.Config = {
 	APIRoot: "/api/",
-	WebRoot: "/",
+	WebRoot: "./public/html",
 	ListenHost: "8080",
 };
 

@@ -30,6 +30,8 @@ export class API {
 		this.app.get(this.conf.APIRoot + "tasks", this.list);
 		this.app.post(this.conf.APIRoot + "tasks", this.create);
 		this.app.post(this.conf.APIRoot + "tasks/:id/done", this.done);
+
+		this.app.use('/', express.static(this.conf.WebRoot));
 	}
 
 	private list = (req: express.Request, res: express.Response) => {

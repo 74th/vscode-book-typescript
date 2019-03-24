@@ -23,6 +23,13 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "multer": "^1.4.1",
-    "typescript": "^3.3.4000"
+    "source-map-loader": "^0.2.4",
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.3.4000",
+    "vue": "^2.6.10",
+    "vue-class-component": "^7.0.1",
+    "vue-property-decorator": "^8.1.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
   }
 }

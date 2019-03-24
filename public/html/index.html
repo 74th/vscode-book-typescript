@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>TODO Sample</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+	<div class="container">
+
+		<h1 clss="mb-3">TODO Sample</h1>
+		<div class="mb-3">
+			<div class="row" id="todo-list">
+				<div class="col-md-4" v-for="task in tasks" v-bind:todo="task" v-bind:key="task.id">
+					<div class="card mb-4">
+						<div class="card-body">
+							<p class="card-text">{{ task.text }}</p>
+							<a href="#" class="card-link" v-on:click="clickDone(task)">Done</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row mb-3">
+			<div class="col" id="newTaskView">
+				<div class="input-group">
+					<input type="text" v-model="text" class="form-control" placeholder="task contents"
+						aria-describedby="button-addon4">
+					<div class="input-group-append" id="button-addon4">
+						<button class="btn btn-outline-secondary" type="button" v-on:click="clickAddButton()">Add</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="./js/index.js"></script>
+</body>
+
+</html>
