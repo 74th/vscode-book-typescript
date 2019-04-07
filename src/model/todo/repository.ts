@@ -27,10 +27,6 @@ export class TodoRepository {
 		return task.id;
 	}
 
-	public ListAllTask(): Task[] {
-		return this.tasks.concat();
-	}
-
 	public ListTasks(): Task[] {
 		return this.tasks.filter(task => !task.done);
 	}

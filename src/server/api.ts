@@ -25,7 +25,6 @@ export class API {
 		this.app.use(bodyParser.json());
 		this.app.use(bodyParser.urlencoded({ extended: true }));
 
-		this.app.get(this.conf.APIRoot + "tasks/all", this.listAll);
 		this.app.get(this.conf.APIRoot + "tasks", this.list);
 		this.app.post(this.conf.APIRoot + "tasks", this.create);
 		this.app.post(this.conf.APIRoot + "tasks/:id/done", this.done);
@@ -35,11 +34,6 @@ export class API {
 
 	private list = (req: express.Request, res: express.Response) => {
 		const tasks = this.repository.ListTasks();
-		res.json(tasks);
-	}
-
-	private listAll = (req: express.Request, res: express.Response) => {
-		const tasks = this.repository.ListAllTask();
 		res.json(tasks);
 	}
 
