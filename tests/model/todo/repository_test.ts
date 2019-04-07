@@ -21,7 +21,7 @@ describe("TODO repository", () => {
 		};
 		repo.AddTask(newTasks);
 
-		const tasks = repo.ListTasks()
+		const tasks = repo.ListTasks();
 		assert.equal(tasks.length, 3);
 		assert.notEqual(tasks.find((task: Task): boolean => {
 			return task.text == "new task";

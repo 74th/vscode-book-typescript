@@ -18,6 +18,10 @@ export class TodoRepository {
 		];
 	}
 
+	/**
+	 * タスクを追加する
+	 * @param task 追加するタスク
+	 */
 	public AddTask(task: Task):number {
 		if (task.done === undefined) {
 			task.done = false
