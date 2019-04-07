@@ -1,6 +1,5 @@
 import express from "express";
 import bodyParser from 'body-parser';
-import multer from 'multer';
 import { TodoRepository } from "../model/todo/repository";
 import { Task } from "../model/todo/task";
 

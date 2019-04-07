@@ -1,9 +1,7 @@
-// import { Task } from "../../../src/model/todo/task";
 import { Task } from "src/model/todo/task";
 import { TodoRepository } from "src/model/todo/repository";
 import { describe, Suite, it } from "mocha";
 import * as assert from "assert"
-import { TaskListView } from "src/frontend/views/taskList";
 
 
 describe("TODO repository", () => {

@@ -9,7 +9,7 @@
 			"request": "launch",
 			"name": "Launch Server",
 			"preLaunchTask": "tsc build",
-			"program": "${workspaceFolder}/out/server/main.js",
+			"program": "${workspaceFolder}/out/src/server/main.js",
 			"outFiles": [
 				"${workspaceFolder}/**/*.js"
 			],
