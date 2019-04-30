@@ -1,28 +1,5 @@
 const path = require('path');
 
-// module.exports = {
-//   entry: './src/frontend/index.ts',
-//   module: {
-//     rules: [
-//       {
-//         test: /\.tsx?$/,
-//         use: 'ts-loader',
-//         exclude: /node_modules/
-//       }
-//     ]
-//   },
-//   resolve: {
-//     extensions: [ '.ts', '.js' ]
-//   },
-//   output: {
-//     filename: 'index.js',
-//     path: path.resolve(__dirname, "./public/html/js"),
-// 	},
-// 	devtool: 'inline-source-map'
-// };
-
-// const path = require('path');
-
 let exclude = [path.resolve(__dirname, "public")];
 
 module.exports = {
