@@ -49,13 +49,17 @@
 				"-c",
 				"tslint.json",
 				"src/**/*.ts",
+				"tests/**/*.ts",
 				"-t",
 				"verbose"
 			],
 			"type": "shell",
 			"group": "test",
 			"problemMatcher": [
-				"$tslint5",
+				{
+					"base": "$tslint5",
+					"fileLocation": "relative"
+				}
 			]
 		},
 	]

@@ -8,9 +8,9 @@ export class NewTaskView extends Vue {
 	text: string = "";
 
 	async clickAddButton(): Promise<void> {
-		const task: Task = { id: 0, text: this.text };
+		const task: Task = { id: 0, text: this.text }
 		await postTask(task);
-		this.text = "";
+		this.text = ""
 		this.$emit("updateTaskList");
 	}
 
