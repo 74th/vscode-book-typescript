@@ -5,14 +5,28 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"type": "chrome",
+			"request": "launch",
+			"name": "Launch Chrome",
+			"url": "http://localhost:8080",
+			"webRoot": "${workspaceFolder}"
+		},
+
+		{
 			"type": "node",
 			"request": "launch",
 			"name": "Launch Server",
 			"preLaunchTask": "tsc build",
-			"program": "${workspaceFolder}/out/src/server/main.js",
-			"outFiles": [
-				"${workspaceFolder}/**/*.js"
-			],
+			"program": "${workspaceFolder}/out/src/server/main.js"
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "Launch ts-node",
+			"runtimeArgs": ["-r", "ts-node/register"],
+			"args": [
+				"${workspaceFolder}/src/server/main.ts"
+			]
 		},
 		{
 			"type": "chrome",
