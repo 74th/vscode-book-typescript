@@ -37,10 +37,6 @@
 				"${workspaceFolder}/node_modules/.bin/webpack -w"
 			],
 			"type": "shell",
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			},
 			"problemMatcher": [
 				"$tsc"
 			]
