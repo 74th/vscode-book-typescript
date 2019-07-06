@@ -1,0 +1,67 @@
+{
+	// See https://go.microsoft.com/fwlink/?LinkId=733558
+	// for the documentation about the tasks.json format
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "test echo",
+			"type": "shell",
+			"command": [
+				"echo"
+			],
+			"args": [
+				"$HOME"
+			],
+			"group": {
+				"kind": "build"
+			}
+		},
+		{
+			"label": "tsc build",
+			"type": "shell",
+			"command": [
+				"tsc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "webpack build",
+			"command": [
+				"${workspaceFolder}/node_modules/.bin/webpack"
+			],
+			"type": "shell",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "webpack build watch",
+			"command": [
+				"${workspaceFolder}/node_modules/.bin/webpack -w"
+			],
+			"type": "shell",
+			"group": "build",
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"type": "typescript",
+			"tsconfig": "tsconfig.json",
+			"option": "watch",
+			"problemMatcher": [
+				"$tsc-watch"
+			]
+		}
+	]
+}

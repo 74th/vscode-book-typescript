@@ -1,55 +1,73 @@
 import express from "express";
-import bodyParser from 'body-parser';
-import { TodoRepository } from "../model/todo/repository";
-import { Task } from "../model/todo/task";
+import bodyParser from "body-parser";
+import { Repository } from "../model/task/repository";
+import { ITask } from "../model/task/task";
 
-export interface Config {
-	ListenHost: string;
-	WebRoot: string;
-	APIRoot: string;
+/**
+ * APIの設定
+ */
+export interface IConfig {
+  ListenHost: string;
+  WebRoot: string;
+  APIRoot: string;
 }
 
+/**
+ * API
+ */
 export class API {
-	private app: express.Express;
-	private repository: TodoRepository;
-	private conf: Config;
+  private app: express.Express;
+  private repository: Repository;
+  private conf: IConfig;
 
-	constructor(conf: Config) {
-		this.conf = conf;
-		this.repository = new TodoRepository();
-		this.app = express();
-		this.routing();
-	}
+  constructor(conf: IConfig) {
+    this.conf = conf;
+    this.repository = new Repository();
+    this.app = express();
+    this.routing();
+  }
 
-	private routing() {
-		this.app.use(bodyParser.json());
-		this.app.use(bodyParser.urlencoded({ extended: true }));
+  public Run = () => {
+    this.app.listen(this.conf.ListenHost);
+  }
 
-		this.app.get(this.conf.APIRoot + "tasks", this.list);
-		this.app.post(this.conf.APIRoot + "tasks", this.create);
-		this.app.post(this.conf.APIRoot + "tasks/:id/done", this.done);
+  /**
+   * Expressのルーティングの設定
+   */
+  private routing() {
+    this.app.use(bodyParser.json());
+    this.app.use(bodyParser.urlencoded({ extended: true }));
 
-		this.app.use('/', express.static(this.conf.WebRoot));
-	}
+    // GETの場合タスクのリストを返す
+    this.app.get(this.conf.APIRoot + "tasks", this.list);
+    // POSTの場合タスクを登録する
+    this.app.post(this.conf.APIRoot + "tasks", this.create);
+    this.app.post(this.conf.APIRoot + "tasks/:id/done", this.done);
 
-	private list = (req: express.Request, res: express.Response) => {
-		const tasks = this.repository.ListTasks();
-		res.json(tasks);
-	}
+    // フロントエンドのHTMLを提供する
+    this.app.use("/", express.static(this.conf.WebRoot));
+  }
 
-	private create = (req: express.Request, res: express.Response) => {
-		const task: Task = req.body;
-		const id = this.repository.AddTask(task)
-		res.json({ "id": id });
-	}
+  /**
+   * タスクの一覧
+   */
+  private list = (req: express.Request, res: express.Response) => {
+    const tasks = this.repository.ListTasks();
+    res.json(tasks);
+  }
 
-	private done = (req: express.Request, res: express.Response) => {
-		const id = req.params.id;
-		this.repository.DoneTask(id);
-		res.json({});
-	}
+  /**
+   * タスクの追加
+   */
+  private create = (req: express.Request, res: express.Response) => {
+    const task: ITask = req.body;
+    const id = this.repository.AddTask(task);
+    res.json({ id });
+  }
 
-	public Run = () => {
-		this.app.listen(this.conf.ListenHost);
-	}
+  private done = (req: express.Request, res: express.Response) => {
+    const id = req.params.id;
+    this.repository.DoneTask(id);
+    res.json({});
+  }
 }

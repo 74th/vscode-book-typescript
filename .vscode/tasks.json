@@ -1,66 +1,36 @@
 {
-	// See https://go.microsoft.com/fwlink/?LinkId=733558
-	// for the documentation about the tasks.json format
-	"version": "2.0.0",
-	"tasks": [
-		{
-			"label":"tsc build",
-			"command":[
-				"${workspaceFolder}/node_modules/.bin/tsc"
-			],
-			"type": "shell",
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			},
-			"problemMatcher": [
-				"$tsc"
-			]
-		},
-		{
-			"label":"webpack build",
-			"command":[
-				"${workspaceFolder}/node_modules/.bin/webpack"
-			],
-			"type": "shell",
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			},
-			"problemMatcher": [
-				"$tsc"
-			]
-		},
-		{
-			"label":"webpack build watch",
-			"command":[
-				"${workspaceFolder}/node_modules/.bin/webpack -w"
-			],
-			"type": "shell",
-			"group": "build",
-			"problemMatcher": [
-				"$tsc"
-			]
-		},
-		{
-			"label":"tslint",
-			"command":[
-				"${workspaceFolder}/node_modules/.bin/tslint",
-				"-c",
-				"tslint.json",
-				"src/**/*.ts",
-				"tests/**/*.ts",
-				"-t",
-				"verbose"
-			],
-			"type": "shell",
-			"group": "test",
-			"problemMatcher": [
-				{
-					"base": "$tslint5",
-					"fileLocation": "relative"
-				}
-			]
-		},
-	]
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [{
+            "type": "typescript",
+            "label": "tsc watch",
+            "tsconfig": "tsconfig.json",
+            "problemMatcher": [
+                "$tsc"
+            ]
+        },
+        {
+            "type": "typescript",
+            "label": "tsc build",
+            "tsconfig": "tsconfig.json",
+            "problemMatcher": [
+                "$tsc"
+            ]
+        },
+        {
+            "label": "webpack build",
+            "command": [
+                "${workspaceFolder}/node_modules/.bin/webpack"
+            ],
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$tsc"
+            ]
+        }
+    ]
 }
