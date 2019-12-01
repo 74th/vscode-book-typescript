@@ -78,7 +78,7 @@ export class API {
 
 
   private done = (req: express.Request, res: express.Response) => {
-    const id = req.params.id;
+    const id = parseInt(req.params.id, 10);
     this.repository.DoneTask(id);
     res.json({});
   }
