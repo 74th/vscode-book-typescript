@@ -5,7 +5,7 @@
 
     // 出力するJavaScriptのバージョン
     // 'ES3', 'ES5', 'ES2015', 'ES2016', 'ES2017','ES2018' or 'ESNEXT'
-    "target": "ES2016",
+    "target": "ES2017",
 
     // ソースマップを出力する
     "sourceMap": true,
