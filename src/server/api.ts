@@ -43,6 +43,8 @@ export class API {
     // POSTの場合タスクを登録する
     this.app.post(this.conf.APIRoot + "tasks", this.create);
     this.app.post(this.conf.APIRoot + "tasks/:id/done", this.done);
+    // DELETEの場合タスクを削除する
+    this.app.delete(this.conf.APIRoot + "tasks", this.create);
 
     // フロントエンドのHTMLを提供する
     this.app.use("/", express.static(this.conf.WebRoot));
@@ -64,6 +66,16 @@ export class API {
     const id = this.repository.AddTask(task);
     res.json({ id });
   }
+
+  /**
+ * タスクの削除
+ */
+  private delete = (req: express.Request, res: express.Response) => {
+    const task: ITask = req.body;
+    const id = this.repository.AddTask(task);
+    res.json({ id });
+  }
+
 
   private done = (req: express.Request, res: express.Response) => {
     const id = req.params.id;
