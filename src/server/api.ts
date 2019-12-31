@@ -16,38 +16,38 @@ export interface IConfig {
  * API
  */
 export class API {
-  private app: express.Express;
+  private api: express.Express;
   private repository: Repository;
   private conf: IConfig;
 
   constructor(conf: IConfig) {
     this.conf = conf;
     this.repository = new Repository();
-    this.app = express();
+    this.api = express();
     this.routing();
   }
 
   public Run = () => {
-    this.app.listen(this.conf.ListenHost);
+    this.api.listen(this.conf.ListenHost);
   }
 
   /**
    * Expressのルーティングの設定
    */
   private routing() {
-    this.app.use(bodyParser.json());
-    this.app.use(bodyParser.urlencoded({ extended: true }));
+    this.api.use(bodyParser.json());
+    this.api.use(bodyParser.urlencoded({ extended: true }));
 
     // GETの場合タスクのリストを返す
-    this.app.get(this.conf.APIRoot + "tasks", this.list);
+    this.api.get(this.conf.APIRoot + "tasks", this.list);
     // POSTの場合タスクを登録する
-    this.app.post(this.conf.APIRoot + "tasks", this.create);
-    this.app.post(this.conf.APIRoot + "tasks/:id/done", this.done);
+    this.api.post(this.conf.APIRoot + "tasks", this.create);
+    this.api.post(this.conf.APIRoot + "tasks/:id/done", this.done);
     // DELETEの場合タスクを削除する
-    this.app.delete(this.conf.APIRoot + "tasks", this.create);
+    this.api.delete(this.conf.APIRoot + "tasks", this.create);
 
     // フロントエンドのHTMLを提供する
-    this.app.use("/", express.static(this.conf.WebRoot));
+    this.api.use("/", express.static(this.conf.WebRoot));
   }
 
   /**
