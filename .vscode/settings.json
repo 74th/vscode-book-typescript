@@ -1,15 +1,24 @@
 {
-	"editor.codeLens": true,
-	"typescript.implementationsCodeLens.enabled": true,
-	"typescript.referencesCodeLens.enabled": true,
-	"mochaExplorer.mochaPath": "./node_modules/mocha",
-	"mochaExplorer.files": "tests/**/*.ts",
-	"mochaExplorer.require": [
-		"ts-node/register",
-	],
-	"mochaExplorer.cwd": "./",
-	"mochaExplorer.env": {
-		"NODE_PATH": "./",
-	},
-	"testExplorer.codeLens": true,
+  // Mochaはnode_modules内のパッケージを使う
+  "mochaExplorer.mochaPath": "./node_modules/mocha",
+
+  // testsフォルダー下のソースコードを指定する
+  "mochaExplorer.files": "tests/**/*.ts",
+
+  // TypeScriptを使うため、ts-nodeを使う
+  "mochaExplorer.require": ["ts-node/register"],
+
+  // ワークスペースのフォルダーで実行する
+  "mochaExplorer.cwd": "./",
+
+  // ワークスペース内のファイルで絶対参照を使うための設定
+  "mochaExplorer.env": {
+    "NODE_PATH": "./"
+  },
+
+  // コードレンズを有効にする
+  "editor.codeLens": true,
+  "testExplorer.codeLens": true,
+  "typescript.referencesCodeLens.enabled": true,
+  "typescript.implementationsCodeLens.enabled": true
 }

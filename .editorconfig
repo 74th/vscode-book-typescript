@@ -1,7 +1,10 @@
+root = true
+
 [*]
 end_of_line = lf
 insert_final_newline = true
 
 [*.ts]
 indent_style = space
+# 注：紙面の都合インデントの数は2にしています
 indent_size = 2

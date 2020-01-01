@@ -25,6 +25,7 @@ export class Repository {
   /**
    * タスクを追加する
    * @param task 追加するタスク
+   * @returns 採番されたタスクID
    */
   public AddTask(task: ITask): number {
     if (task.done === undefined) {
@@ -37,11 +38,16 @@ export class Repository {
 
   /**
    * タスクの一覧を取得する
+   * @returns タスクリスト
    */
   public ListTasks(): ITask[] {
     return this.tasks.filter((task) => !task.done);
   }
 
+  /**
+   * タスクを完了にする
+   * @param id 完了にするタスクID
+   */
   public DoneTask(id: number) {
 
     this.tasks.forEach((task) => {

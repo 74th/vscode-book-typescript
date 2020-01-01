@@ -7,9 +7,10 @@ import { ITask } from "../model/task/task";
  * APIの設定
  */
 export interface IConfig {
+  // リスンするホストとポート
   ListenHost: string;
+  // フロントエンドのファイルのディレクトリ
   WebRoot: string;
-  APIRoot: string;
 }
 
 /**
@@ -21,15 +22,22 @@ export class API {
   private conf: IConfig;
 
   constructor(conf: IConfig) {
-    this.conf = conf;
+    // タスクリポジトリを持つ
     this.repository = new Repository();
+    // Expressのインスタンスを作成する
     this.app = express();
+    // 設定
+    this.conf = conf;
+    // ルーティングの設定
     this.routing();
   }
 
+  /**
+   * サーバーの起動
+   */
   public Run = () => {
     this.app.listen(this.conf.ListenHost);
-  }
+  };
 
   /**
    * Expressのルーティングの設定
@@ -39,12 +47,11 @@ export class API {
     this.app.use(bodyParser.urlencoded({ extended: true }));
 
     // GETの場合タスクのリストを返す
-    this.app.get(this.conf.APIRoot + "tasks", this.list);
+    this.app.get("/api/tasks", this.list);
     // POSTの場合タスクを登録する
-    this.app.post(this.conf.APIRoot + "tasks", this.create);
-    this.app.post(this.conf.APIRoot + "tasks/:id/done", this.done);
-    // DELETEの場合タスクを削除する
-    this.app.delete(this.conf.APIRoot + "tasks", this.create);
+    this.app.post("/api/tasks", this.create);
+    // タスクの完了
+    this.app.post("/api/tasks/:id/done", this.done);
 
     // フロントエンドのHTMLを提供する
     this.app.use("/", express.static(this.conf.WebRoot));
@@ -56,7 +63,7 @@ export class API {
   private list = (req: express.Request, res: express.Response) => {
     const tasks = this.repository.ListTasks();
     res.json(tasks);
-  }
+  };
 
   /**
    * タスクの追加
@@ -65,21 +72,14 @@ export class API {
     const task: ITask = req.body;
     const id = this.repository.AddTask(task);
     res.json({ id });
-  }
+  };
 
   /**
- * タスクの削除
- */
-  private delete = (req: express.Request, res: express.Response) => {
-    const task: ITask = req.body;
-    const id = this.repository.AddTask(task);
-    res.json({ id });
-  }
-
-
+   * タスクの完了
+   */
   private done = (req: express.Request, res: express.Response) => {
     const id = parseInt(req.params.id, 10);
     this.repository.DoneTask(id);
     res.json({});
-  }
+  };
 }

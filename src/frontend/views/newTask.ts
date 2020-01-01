@@ -13,5 +13,4 @@ export class NewTaskView extends Vue {
     this.text = "";
     this.$emit("updateTaskList");
   }
-
 }
